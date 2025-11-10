@@ -957,25 +957,27 @@ function library:AddWindow(title, options)
 
 	do -- Altering Window Color
 		local Title = Window:FindFirstChild("Title")
-		local Bar = Window:FindFirstChild("Bar")
-		local Base = Bar:FindFirstChild("Base")
-		local Top = Bar:FindFirstChild("Top")
-		local SplitFrame = Window:FindFirstChild("TabSelection"):FindFirstChild("Frame")
-		local Toggle = Bar:FindFirstChild("Toggle")
+	local Bar = Window:FindFirstChild("Bar")
+	local Base = Bar:FindFirstChild("Base")
+	local Top = Bar:FindFirstChild("Top")
+	local SplitFrame = Window:FindFirstChild("TabSelection"):FindFirstChild("Frame")
+	local Toggle = Bar:FindFirstChild("Toggle")
 
-		spawn(function()
-			while true do
-				Bar.BackgroundColor3 = rainbow
-				Base.BackgroundColor3 = rainbow
-				Base.ImageColor3 = rainbow
-				Top.ImageColor3 = rainbow
-				SplitFrame.BackgroundColor3 = rainbow
+	spawn(function()
+		while true do
+			local hue = tick() % 5 / 5 -- velocidad del ciclo (ajustá el número 5 para hacerlo más rápido/lento)
+			local rainbow = Color3.fromHSV(hue, 1, 1)
 
-				RS.Heartbeat:Wait()
-			end
-		end)
-
-	end
+			Bar.BackgroundColor3 = rainbow
+			Base.BackgroundColor3 = rainbow
+			Base.ImageColor3 = rainbow
+			Top.ImageColor3 = rainbow
+			SplitFrame.BackgroundColor3 = rainbow
+				
+			task.wait()
+		end
+	end)
+end
 
 	local Resizer = Window:WaitForChild("Resizer")
 
